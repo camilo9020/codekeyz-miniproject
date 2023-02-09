@@ -83,6 +83,10 @@ GEM
     debug (1.7.1)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -116,6 +120,8 @@ GEM
       net-protocol
     nio4r (2.5.8)
     nokogiri (1.14.1-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.14.1-x86_64-linux)
       racc (~> 1.4)
     pg (1.4.5)
     pry (0.14.2)
@@ -169,11 +175,13 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers
   bootsnap
   debug
+  dotenv-rails
   pg (~> 1.1)
   pry
   puma (~> 5.0)

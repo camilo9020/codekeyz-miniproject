@@ -30,8 +30,6 @@ export default class UserPage extends Component {
     const duration = finalTime - this.state.initialTime.getTime();
     const durationInSeconds = duration / 1000;
 
-    console.log({ finalTime, initialTime: this.state.initialTime.getTime()})
-
     axios.post('http://localhost:3000/api/v1/answers', { answers, durationInSeconds })
     .then(_ => {
       this.setState({result: "answers resgistered, thanks!", duration: durationInSeconds, answers: {}})
@@ -59,6 +57,7 @@ export default class UserPage extends Component {
       .catch(error => console.log(error))
   }
 
+
   renderQuestions() {
     return this.state.questions.map((question) => {
       return (
@@ -73,7 +72,7 @@ export default class UserPage extends Component {
   render() {
     return (
       <div>
-        <h1>User Page</h1>
+        <h1>User Page Test</h1>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           {this.renderQuestions()}
           <input type="submit" value="Submit" />

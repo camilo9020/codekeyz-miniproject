@@ -18,7 +18,7 @@ module RailsApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3001'
+        origins ['http://localhost:4000', 'http://localhost:8080' ]
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
