@@ -3,11 +3,18 @@ services:
   db:
     container_name: rails-api-db
     image: postgres
-    env_file: ./rails-api/.env
+    env_file: .env
     volumes:
       - pg-rails-api:/var/lib/postgresql/data
     ports:
       - 5432:5432
+  redis:
+    container_name: rails-api-redis
+    image: redis:7.0
+    ports:
+      - '6379:6379'
+    volumes:
+      - rails-api-redis:/var/lib/redis/data
   rails-api:
     container_name: rails-api
     build: ./rails-api
@@ -30,6 +37,16 @@ services:
       - ./react-ui/node_modules:/usr/src/react-ui/node_modules
     ports:
       - "4000:4000"
+  sidekiq:
+    container_name: rails-api-sidekiq
+    build:
+      context: ./rails-api
+    command: bundle exec sidekiq
+    links:
+      - db
+      - redis
+    env_file:
+      - .env
   nginx:
     container_name: nginx
     image: bitnami/nginx:1.10.2-r1
@@ -46,3 +63,4 @@ services:
 
 volumes:
   pg-rails-api:
+  rails-api-redis:
